@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         self.initTitleInput()
         
         // 내비게이션 바의 색성
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.02, green: 0.22, blue: 0.49, alpha: 1.0)
+//        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.02, green: 0.22, blue: 0.49, alpha: 1.0)
     }
     
     // 내비게이션 바의 타이틀 설정 - 한개의 레이블
@@ -95,6 +95,43 @@ class ViewController: UIViewController {
         
         // 내비게이션 아이템의 타이틀 추가
         self.navigationItem.titleView = textField
+        
+        // 왼쪽 바 버튼 아이템
+        let leftItem = UIBarButtonItem(image: UIImage(named: "arrow-back"),
+                                       style: .plain ,
+                                       target: self,
+                                       action: nil)
+        
+        // leftBarButtonItem 추가
+        self.navigationItem.leftBarButtonItem = leftItem
+        
+        // 오른쪽 바 버튼 아이템에 추가될 컨테이너 뷰
+        let rv = UIView(frame: CGRect(x: 0, y: 0, width: 70, height: 37))
+        
+        // 카운터 레이블
+        let cnt = UILabel(frame: CGRect(x: 10, y: 8, width: 20, height: 20))
+        cnt.textAlignment = .center
+        cnt.font = UIFont.systemFont(ofSize: 10)
+        cnt.textColor = UIColor(red: 0.60, green: 0.60, blue: 0.60, alpha: 1.0)
+        cnt.text = "12"
+        
+        // 레이블 외곽
+        cnt.layer.borderWidth = 2       // 모서리 굵기
+        cnt.layer.cornerRadius = 3      // 모서리 둥글게
+        cnt.layer.borderColor = UIColor(red: 0.60, green: 0.60, blue: 0.60, alpha: 1.0).cgColor
+        
+        // 설정 버튼
+        let more = UIButton(type: UIButton.ButtonType.system)
+        more.frame = CGRect(x: 50, y: 10, width: 16, height: 16)
+        more.setImage(UIImage(named: "more"), for: .normal)
+        
+        // 컨테이너 뷰에 추가
+        rv.addSubview(cnt)
+        rv.addSubview(more)
+        
+        // rightBarButtonItem에 추가
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rv)
+        
         
     }
 
